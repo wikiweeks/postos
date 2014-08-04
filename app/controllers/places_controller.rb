@@ -9,7 +9,7 @@ class PlacesController < ApplicationController
 
   def create
   	
-	 yahoo = Typhoeus.get("http://where.yahooapis.com/v1/places.q(#{URI.encode(safe_search_term[:name])})?format=json&appid=NKkXnZ7V34G1aIcSoM.FKQt18ewzU5CkGzJznfCpRS6v8hLIrZdHM1ecYx_2gbfz")
+	 yahoo = Typhoeus.get("http://where.yahooapis.com/v1/places.q(#{URI.encode(safe_search_term[:name])})?format=json&appid=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 	 
 	 response = yahoo.options[:response_body]
 	 parsed =JSON.load(response)
@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
 	 @place.spot = spot
 
  		def prepare_access_token(oauth_token, oauth_token_secret)
-		  consumer = OAuth::Consumer.new("Q330Y6DrJHFgKcCY6FkARbw2g", "CKBIZGyWPZtFMqivzQYHGJ4fOIaUWl5V8kP90nrGVSXPoT6bcA",
+		  consumer = OAuth::Consumer.new("XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXXXXXX",
 		    { :site => "https://api.twitter.com",
 		      :scheme => :header
 		    })
@@ -34,17 +34,10 @@ class PlacesController < ApplicationController
 		end
 	 
 		# Exchange our oauth_token and oauth_token secret for the AccessToken instance.
-		access_token = prepare_access_token("137516812-3tV2YB4vcT2pX1JCO9pH6e20r4kzoDtfOgwuv54E", "okC2kBZEdiQIGB5wFbcMVxzv45VTW2100mNi9UxR2JMOa")
+		access_token = prepare_access_token("XXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXXXXX")
 		# use the access token as an agent to get the home timeline
 		response = access_token.request(:get, "https://api.twitter.com/1.1/trends/place.json?id=#{@place.spot}")
 
-		# if response.body = nil
-		# 	worldwide=access_token.request(:get, "https://api.twitter.com/1.1/trends/place.json?id=1")
-		# 	trends_hash=JSON.load(worldwide.body)
-		# 	binding.pry
-		# 	@place.name="Worldwide"
-		# else
-		# if response.body
 		
 		trends_hash = JSON.load(response.body)
 		@place.trends = trends_hash[0]["trends"]
@@ -52,15 +45,6 @@ class PlacesController < ApplicationController
 		@place.save
 	 	
 	 	redirect_to @place
-		# else 
-		# 	worldwide = access_token.request(:get, "https://api.twitter.com/1.1/trends/place.json?id=1")
-		# 	trends_hash = JSON.load(worldwide.body)	
-		# 	@place.name = "Worldwide"
-		# end
-
-
-		
-
 
   end
 
