@@ -1,0 +1,46 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+	<div class="container" `>
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        
+        </div>
+	</div>
+
+</div>
+
+	<div class="container">
+
+			<div class="jumbotron" style="text-align:center">
+				<h1>Welcome to <span style="color:#55acee;">Postos</span></h1>
+				<p>See what people are talking about in a given place at a given time</p>
+				<br />
+						<h2>Enter a city to see <img src="https://g.twimg.com/Twitter_logo_blue.png" style="height:1em;" /> Trends </h2>
+						<br />
+						<%= form_for :place, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+						 	<%= f.text_field :name, size: "40x12" %>
+							<%= f.submit "Create" %> 
+						<% end %>	
+
+			</div>
+				<ul> <h3>Popular Places</h3>
+					<li>San Francisco</li>
+					<li>New York City</li>
+					<li>Dallas</li>
+					<li>Pittsburgh</li>
+					<li>Seattle</li>
+					<li>Chicago</li>
+					<li>Boston</li>
+					<li>Paris</li>
+					<li>London</li>
+					<li>Tokyo</li>
+				</ul>
+</div>	
+<!-- <img src="https://g2.twimg.com/transparency/system/files/styles/hero_1600w_800h/public/transparency/home-hero.jpg" style="withd=780px;" /> -->
+
+
+<!-- <p>Find me in app/views/places/index.html.erb</p> -->
